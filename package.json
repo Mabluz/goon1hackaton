@@ -1,0 +1,23 @@
+{
+  "name": "redesign",
+  "version": "0.0.1",
+  "description": "Prototype of frontend telenor.no",
+  "main": "app.js",
+  "engines": {
+    "node": "7.10.0",
+    "npm": "4.2.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.4.3",
+    "fs-extra": "^0.30.0",
+    "hbs": "^4.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {}
+}

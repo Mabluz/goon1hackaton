@@ -1,0 +1,22 @@
+{
+  "apiVersion" : "dchub.telenor.no/v1",
+  "kind" : "AppDoc",
+  "metadata" : {
+    "name" : "component-tracking",
+    "namespace" : "web-services-sit",
+    "labels" : {
+      "app" : "component-tracking"
+    },
+    "annotations" : {
+      "dchub.occam/spec.parent" : "/dchub/node-v8-spec.json",
+      "dchub.occam/spec.build.parent" : "/dchub/build-spec/node-v8.json",
+      "dchub.occam/spec.deployment.parent" : "/dchub/deployment-spec/node.json"
+    }
+  },
+  "spec" : {
+    "links" : [ {
+      "name" : "README",
+      "url" : "https://source.telenor.no/stash/projects/git@github.com:Mabluz/repos/goon1hackaton/browse/README.md"
+    } ]
+  }
+}

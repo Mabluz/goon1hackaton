@@ -1,0 +1,33 @@
+{
+  "parent": "/dchub/node-v8-spec.json",
+  "application": {
+    "name": "component-tracking",
+    "build": {
+      "namespace": "web-services",
+      "tag": "prod"
+    },
+    "deployment": {
+      "namespace": "web-services",
+      "tag": "prod",
+      "configMaps": [],
+      "secrets": [],
+      "replicas" : 2,
+	  "endpoints": [
+        {
+          "id": "component-tracking",
+          "hostname": "component-tracking.dc.corp.telenor.no",
+          "containerPort": 8080,
+          "secure": false
+        }
+      ],
+      "environment": [{
+        "id": "PORT",
+        "name": "PORT",
+        "value": 8080
+      },{
+        "id": "nodeEnv",
+        "value": "production"
+      }]
+    }
+  }
+}

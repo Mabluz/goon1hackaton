@@ -1,0 +1,26 @@
+{
+  "kind" : "Route",
+  "apiVersion" : "v1",
+  "metadata" : {
+    "name" : "component-tracking.component-tracking",
+    "namespace" : "web-services-sit",
+    "annotations" : {
+      "haproxy.router.openshift.io/ip_whitelist" : "",
+      "dchub.occam/spec.parent" : "/dchub/node-v8-spec.json",
+      "dchub.occam/spec.build.parent" : "/dchub/build-spec/node-v8.json",
+      "dchub.occam/spec.deployment.parent" : "/dchub/deployment-spec/node.json"
+    }
+  },
+  "spec" : {
+    "host" : "component-tracking.test-dc.corp.telenor.no",
+    "to" : {
+      "kind" : "Service",
+      "name" : "component-tracking",
+      "weight" : 100
+    },
+    "port" : {
+      "targetPort" : "8080-tcp"
+    },
+    "alternateBackends" : [ ]
+  }
+}

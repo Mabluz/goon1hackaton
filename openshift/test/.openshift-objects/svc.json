@@ -1,0 +1,29 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "openshift.io/generated-by" : "OpenShiftNewApp",
+      "dchub.occam/spec.parent" : "/dchub/node-v8-spec.json",
+      "dchub.occam/spec.build.parent" : "/dchub/build-spec/node-v8.json",
+      "dchub.occam/spec.deployment.parent" : "/dchub/deployment-spec/node.json"
+    },
+    "labels" : {
+      "app" : "component-tracking"
+    },
+    "name" : "component-tracking",
+    "namespace" : "web-services-sit"
+  },
+  "spec" : {
+    "ports" : [ {
+      "name" : "8080-tcp",
+      "port" : 8080,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app" : "component-tracking",
+      "deploymentconfig" : "component-tracking"
+    }
+  }
+}

@@ -1,22 +1,23 @@
 const express = require('express');
 const path = require('path');
-const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const config = require("./bin/config");
 const app = express();
+const helmet = require('helmet');
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-global.handlebars = hbs;
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.use(helmet({
+    frameguard: false
+}));
 
 app.use("/", require('./controller/index'));
+
+app.use('/metrics', require('./controller/metric-controller'));
+
+// Health check is being used by OpenShift to determine ready state, etc.
+app.use('/health', require('./controller/healthcheck-controller'));
 
 
 if (!process._eval) {

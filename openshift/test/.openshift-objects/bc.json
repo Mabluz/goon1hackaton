@@ -1,0 +1,68 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "BuildConfig",
+  "metadata" : {
+    "annotations" : {
+      "openshift.io/generated-by" : "DCHUB Occam",
+      "dchub.occam/builder-id" : "nodebuild",
+      "dchub.occam/spec.parent" : "/dchub/node-v8-spec.json",
+      "dchub.occam/spec.build.parent" : "/dchub/build-spec/node-v8.json",
+      "dchub.occam/spec.deployment.parent" : "/dchub/deployment-spec/node.json"
+    },
+    "labels" : {
+      "build" : "component-tracking"
+    },
+    "name" : "component-tracking",
+    "namespace" : "web-services-ci"
+  },
+  "spec" : {
+    "nodeSelector" : null,
+    "output" : {
+      "to" : {
+        "kind" : "ImageStreamTag",
+        "name" : "component-tracking:latest"
+      }
+    },
+    "postCommit" : { },
+    "resources" : {
+      "limits" : {
+        "memory" : "1Gi",
+        "cpu" : "1"
+      },
+      "requests" : {
+        "memory" : "768Mi",
+        "cpu" : "100m"
+      }
+    },
+    "runPolicy" : "Serial",
+    "source" : {
+      "git" : {
+        "ref" : "master",
+        "uri" : "ssh://git@source.telenor.no:7999/w8/web-services.git"
+      },
+      "sourceSecret" : {
+        "name" : "scmsecret"
+      },
+      "type" : "Git",
+      "contextDir" : "/component-tracking"
+    },
+    "strategy" : {
+      "sourceStrategy" : {
+        "from" : {
+          "kind" : "ImageStreamTag",
+          "name" : "nodejs:8",
+          "namespace" : "openshift"
+        },
+        "incremental" : false,
+        "env" : [ {
+          "name" : "NODE_ENV",
+          "value" : ""
+        } ]
+      },
+      "type" : "Source"
+    },
+    "triggers" : [ {
+      "type" : "ConfigChange"
+    } ]
+  }
+}

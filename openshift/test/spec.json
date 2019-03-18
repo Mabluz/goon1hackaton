@@ -1,0 +1,47 @@
+{
+  "parent": "/dchub/node-v8-spec.json",
+  "application": {
+    "name": "component-tracking",
+    "build": {
+      "namespace": "web-services-ci",
+      "tag": "latest",
+      "builder": [
+        {
+          "id": "nodebuild",
+          "contextDir": "/component-tracking"
+        }
+      ],
+      "git": {
+        "url": "ssh://git@source.telenor.no:7999/w8/web-services.git",
+        "ref": "master"
+      }
+    },
+    "deployment": {
+      "namespace": "web-services-sit",
+      "tag": "latest",
+      "configMaps": [],
+      "secrets": [],
+      "endpoints": [
+        {
+          "id": "component-tracking",
+          "hostname": "component-tracking.test-dc.corp.telenor.no",
+          "containerPort": 8080,
+          "secure": false
+        }
+      ],
+      "environment": [{
+        "id": "PORT",
+        "name": "PORT",
+        "value": 8080
+      },{
+        "id": "nodeEnv",
+        "value": "test"
+      }]
+    }
+    ,
+    "promotion": {
+      "namespace": "web-services-prod-ready",
+      "tag": "prod"
+    }
+  }
+}

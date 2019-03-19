@@ -3,10 +3,8 @@ setTimeout(function() {
 }, 1000);
 
 //preformComponentTest();
-
-
 function preformComponentTest() {
-    var postUrl = "http://localhost:9040/";//http://www.telenor.no/system/componentinfo";
+    var postUrl = "https://test.telenor.no/system/componentinfo/";//http://www.telenor.no/system/componentinfo";
     var returnObj = {
         url: window.location.href,
         date: new Date(),

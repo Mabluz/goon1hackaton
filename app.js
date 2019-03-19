@@ -13,11 +13,10 @@ app.use(helmet({
 }));
 
 app.use("/", require('./controller/index'));
-
 app.use('/metrics', require('./controller/metric-controller'));
-
 // Health check is being used by OpenShift to determine ready state, etc.
 app.use('/health', require('./controller/healthcheck-controller'));
+app.use(express.static(path.join(__dirname, 'frontend-tealium-script')));
 
 
 if (!process._eval) {

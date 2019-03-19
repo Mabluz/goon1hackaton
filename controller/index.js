@@ -9,14 +9,14 @@ router.get("/", async (req, res, next) => {
         try {
             data = JSON.parse(req.query.t);
         } catch (e) {
-            return res.sendStatus(500);
+            return res.sendStatus(200);
         }
         if(data.compNames && data.compNames.length > 0) {
             tracking(data);
             return res.sendStatus(200);
         }
     }
-    return res.sendStatus(500);
+    return res.sendStatus(200);
 });
 
 module.exports = router;

@@ -18,7 +18,8 @@
     "fs-extra": "^0.30.0",
     "helmet": "^3.16.0",
     "path": "^0.12.7",
-    "prom-client": "^11.2.1"
+    "prom-client": "^11.2.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {}
 }

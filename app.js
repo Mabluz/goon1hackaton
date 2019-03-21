@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const config = require("./bin/config");
 const app = express();
 const helmet = require('helmet');
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded

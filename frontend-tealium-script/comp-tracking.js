@@ -1,12 +1,31 @@
-setTimeout(function() {
-    preformComponentTest();
-}, 1000);
-
-//preformComponentTest();
-function preformComponentTest() {
-    var postUrl = "https://test.telenor.no/system/componentinfo/";//http://www.telenor.no/system/componentinfo";
+checkUtagLoaded(0);
+function checkUtagLoaded(loop) {
+    if(loop > 20) {
+        console.log("Break out");
+        return;
+    }
+    try {
+        if(utag !== undefined && utag.gdpr !== undefined) {
+            if(utag.gdpr.consent_prompt.isEnabled && utag.gdpr.values.consent && utag.gdpr.values.consent !== "false") {
+                preformComponentInfo();
+            }
+        }
+        else {
+            setTimeout(function() {
+                checkUtagLoaded(loop + 1);
+            }, 100);
+        }
+    } catch (e) {
+        setTimeout(function() {
+            checkUtagLoaded(loop + 1);
+        }, 100);
+    }
+}
+function preformComponentInfo() {
+    var postUrl = "https://www.telenor.no/system/componentinfo/";//http://www.telenor.no/system/componentinfo";
+    var urlSplit = window.location.href.split("?");
     var returnObj = {
-        url: window.location.href,
+        url: urlSplit[0],
         date: new Date(),
         compNames: []
     };
@@ -22,8 +41,9 @@ function preformComponentTest() {
                 returnObj.compNames.push(obj);
             }
         }
-        //console.log("items", JSON.stringify(returnObj));
-        postData(JSON.stringify(returnObj));
+        if(returnObj.compNames.length > 0) {
+            postData(JSON.stringify(returnObj));
+        }
     } catch (e) {
         console.log("Error: ", e)
     }

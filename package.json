@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cors": "^2.8.5",
     "express": "^4.4.3",
     "fs-extra": "^0.30.0",
     "helmet": "^3.16.0",
